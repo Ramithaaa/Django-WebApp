@@ -26,7 +26,8 @@ pipeline {
         stage ('Deploy to Kubernetes') {
             agent { label 'KUBE' }
             steps {
-                sh "kubectl apply -f ."
+                sh "kubectl apply -f deploy.yaml"
+                sh "kubectl apply -f svc.yaml"
             }
         }
     }
