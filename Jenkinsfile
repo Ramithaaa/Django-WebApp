@@ -23,11 +23,10 @@ pipeline {
                 }
             }
         }
-        stage ('Deploy to K8S') {
+        stage ('Deploy to Kubernetes') {
+            agent { label 'KUBE' }
             steps {
-                script {
-                    kubernetesDeploy(configs: "deploysvc.yaml",kubeconfigId: "kubernetes")
-                }    
+                sh "kubectl apply -f ."
             }
         }
     }
