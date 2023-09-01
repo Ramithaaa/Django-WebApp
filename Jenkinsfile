@@ -23,6 +23,12 @@ pipeline {
                 }
             }
         }
-
+        stage ('Deploy to K8S') {
+            steps {
+                script {
+                    kubernetesDeploy(configs: "deploysvc.yaml",kubeconfigId: "kubernetes")
+                }    
+            }
+        }
     }
 }
