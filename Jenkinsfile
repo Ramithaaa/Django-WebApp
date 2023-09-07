@@ -1,3 +1,9 @@
+def COLORMAP = [
+    'SUCCESS': 'good',
+    'FAILURE': 'danger'
+]
+
+
 pipeline {
     agent any
     environment {
@@ -5,14 +11,18 @@ pipeline {
         registryCredential='dockerhub'
     }
 
+
+    #Containarization
     stages {
-        stage ('Build') {
+        stage ('Build Image') {
             steps {
                 script {
                     dockerImage=docker.build registry                
                 }
             }
         }
+
+
         stage ('Push to DockerHub') {
             steps {
                 script {
@@ -29,6 +39,12 @@ pipeline {
                 sh "kubectl apply -f deploy.yaml"
                 sh "kubectl apply -f svc.yaml"
             }
+        }
+    }
+
+    post {
+        always {
+
         }
     }
 }
