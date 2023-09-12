@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy
+  labels:
+    app: up
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: up
+  template:
+    metadata:
+      labels:
+        app: up
+    spec:
+      containers:
+      - name: app
+        image: huarami/uploader:v1
+        ports:
+        - containerPort: 8000
