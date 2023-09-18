@@ -36,7 +36,7 @@ pipeline {
         stage ('Deploy to Kubernetes') {
             agent { label 'KUBE' }
             steps {
-                sh "helm install app helm/appcharts"
+                sh "helm install uploader helm/appcharts"
             }
         }
     }
