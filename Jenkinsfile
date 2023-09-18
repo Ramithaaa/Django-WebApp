@@ -12,7 +12,7 @@ pipeline {
     }
 
 
-    #Containarization
+   
     stages {
         stage ('Build Image') {
             steps {
