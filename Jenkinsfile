@@ -36,14 +36,14 @@ pipeline {
         stage ('Deploy to Kubernetes') {
             agent { label 'KUBE' }
             steps {
-                sh "helm install uploader helm/appcharts"
+                sh "helm install uploader helm/appcharts --namespace app"
             }
         }
     }
 
     post {
         always {
-            slackSend channel: '#todoapp',
+            slackSend channel: '#webapp',
                       color: COLORMAP[currentBuild.currentResult],
                       message: "Web app build job:${currentBuild} is a ${currentBuild.currentResult}"
         }
