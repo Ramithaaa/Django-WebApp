@@ -45,7 +45,7 @@ pipeline {
         always {
             slackSend channel: '#todoapp',
                       color: COLORMAP[currentBuild.currentResult],
-                      message: "Web app build job:${currentBuild} is a ${currentResult}"
+                      message: "Web app build job:${currentBuild} is a ${currentBuild.currentResult}"
         }
     }
 }
