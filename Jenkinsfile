@@ -36,8 +36,9 @@ pipeline {
         stage ('Deploy to Kubernetes') {
             agent { label 'KUBE' }
             steps {
-                sh "helm install uploader helm/appcharts --namespace app"
                 sh "kubectl delete namespace app"
+                sh "kubectl create namespace app"
+                sh "helm install uploader helm/appcharts --namespace app"
             }
         }
     }
