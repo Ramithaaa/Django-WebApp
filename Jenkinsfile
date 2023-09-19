@@ -37,6 +37,7 @@ pipeline {
             agent { label 'KUBE' }
             steps {
                 sh "helm install uploader helm/appcharts --namespace app"
+                sh "kubectl delete namespace app"
             }
         }
     }
