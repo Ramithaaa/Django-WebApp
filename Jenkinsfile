@@ -14,7 +14,7 @@ pipeline {
 
    
     stages {
-        stage ('Build Image') {
+        stage ('Build Docker Image') {
             steps {
                 script {
                     dockerImage=docker.build registry                
@@ -47,7 +47,7 @@ pipeline {
         always {
             slackSend channel: '#webapp',
                       color: COLORMAP[currentBuild.currentResult],
-                      message: "Web app build job:${Build_Number} is a ${currentBuild.currentResult}"
+                      message: "Web app build job no:${Build_Number} is a ${currentBuild.currentResult}"
         }
     }
 }
