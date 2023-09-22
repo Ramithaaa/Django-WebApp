@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: app
-        image: huarami/uploader:v1
+        image: huarami/uploader:latest
         ports:
         - containerPort: 8000
 
